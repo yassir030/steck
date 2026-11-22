@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#183d32">
+  <meta name="description" content="Ontdek het O&O-ontwerp voor een duurzame uitkijktoren bij Steck in Utrecht.">
+  <title>Uitkijktoren Steck | O&amp;O-project</title>
+  <style>
+    :root {
+      --forest: #183d32;
+      --forest-2: #245344;
+      --leaf: #5d8b58;
+      --sage: #a8c49b;
+      --mint: #dcebd7;
+      --cream: #f7f7ef;
+      --paper: #fffefa;
+      --ink: #1d3029;
+      --muted: #64756b;
+      --line: #e4e9df;
+      --sun: #e7b967;
+      --shadow: 0 18px 50px rgba(31, 62, 46, .09);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .container { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      color: var(--leaf); font-size: .76rem; font-weight: 800;
+      letter-spacing: .13em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 23px; height: 2px; background: var(--sun); border-radius: 9px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.035em; }
+    h2 { font-size: clamp(2rem, 4vw, 3.15rem); margin-bottom: 15px; }
+    h3 { font-size: 1.24rem; margin-bottom: 10px; }
+    .section-intro { max-width: 680px; color: var(--muted); font-size: 1.04rem; }
+    .section-heading { margin-bottom: 38px; }
+    .section-heading .eyebrow { margin-bottom: 15px; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(247, 247, 239, .9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(228, 233, 223, .8);
+    }
+    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 850; letter-spacing: -.03em; color: var(--forest); }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; color: white; background: var(--forest); border-radius: 13px; box-shadow: 0 7px 16px rgba(24,61,50,.2); }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .nav-links { display: flex; align-items: center; gap: 7px; }
+    .nav-links a { text-decoration: none; color: #52645a; font-size: .9rem; font-weight: 650; padding: 10px 13px; border-radius: 999px; transition: .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { background: var(--mint); color: var(--forest); outline: none; }
+    .nav-toggle { display: none; border: 1px solid var(--line); color: var(--forest); background: var(--paper); padding: 9px 12px; border-radius: 12px; }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden; color: white;
+      background: radial-gradient(circle at 82% 18%, rgba(151,190,124,.26), transparent 26%),
+                  radial-gradient(circle at 8% 100%, rgba(117,158,103,.18), transparent 30%),
+                  linear-gradient(122deg, #173a30 0%, #245344 58%, #37674b 100%);
+      padding: 78px 0 76px;
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.11); border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 520px; height: 520px; right: -170px; top: -230px; }
+    .hero::after { width: 370px; height: 370px; right: -95px; top: -155px; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 46px; align-items: center; }
+    .hero .eyebrow { color: #c5ddb7; }
+    .hero h1 { max-width: 700px; font-size: clamp(3rem, 7vw, 5.7rem); margin: 19px 0 17px; }
+    .hero h1 span { color: #c2dcae; }
+    .hero-subtitle { color: rgba(255,255,255,.77); font-size: 1.05rem; margin-bottom: 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button-primary, .button-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 19px; border-radius: 999px; text-decoration: none; font-weight: 750; transition: transform .2s ease, background .2s ease; }
+    .button-primary { background: #d8e9cd; color: var(--forest); }
+    .button-primary:hover { background: white; transform: translateY(-2px); }
+    .button-ghost { color: white; border: 1px solid rgba(255,255,255,.27); }
+    .button-ghost:hover { background: rgba(255,255,255,.1); }
+    .hero-note { margin-top: 21px; color: rgba(255,255,255,.6); font-size: .82rem; }
+    .tower-art { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .tower-art::before { content: ""; position: absolute; width: 310px; height: 310px; border-radius: 50%; background: rgba(192,221,174,.10); filter: blur(2px); }
+    .tower-svg { position: relative; width: min(100%, 430px); max-height: 410px; filter: drop-shadow(0 22px 24px rgba(0,0,0,.19)); }
+    .hero-tag { position: absolute; bottom: 22px; right: 1%; color: #e8f0e2; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.09); backdrop-filter: blur(8px); padding: 10px 14px; border-radius: 13px; font-size: .8rem; }
+    .stats-strip { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stat { padding: 22px 26px; display: flex; align-items: center; gap: 14px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat-icon { flex: 0 0 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; background: var(--mint); color: var(--forest); }
+    .stat strong { display: block; color: var(--forest); font-size: 1.25rem; line-height: 1.2; }
+    .stat span:last-child { color: var(--muted); font-size: .83rem; }
+
+    /* Sections */
+    main section { padding: 94px 0; }
+    .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: stretch; }
+    .concept-card, .feature-card, .material-detail, .floor-panel, .team-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .concept-card { padding: 29px; }
+    .concept-card p { color: var(--muted); margin-bottom: 0; }
+    .concept-card .card-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 15px; background: var(--mint); color: var(--forest); margin-bottom: 18px; }
+    .concept-card ul { margin: 15px 0 0; padding-left: 20px; color: var(--muted); }
+    .concept-card li + li { margin-top: 7px; }
+    .concept-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: center; background: linear-gradient(135deg, #eff5e9, #fffefa); }
+    .green-wall-illustration { min-height: 190px; border-radius: 18px; overflow: hidden; background: linear-gradient(140deg, #d3e5c8, #92b78b); display: grid; place-items: center; }
+    .green-wall-illustration svg { width: min(100%, 360px); }
+    .small-note { display: block; margin-top: 13px; color: #78877d; font-size: .82rem; }
+
+    /* Images */
+    .image-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 33px; }
+    .visual-placeholder { margin: 0; min-width: 0; }
+    .media-frame { position: relative; overflow: hidden; display: grid; place-items: center; aspect-ratio: 4 / 3; border-radius: 17px; border: 1px dashed #a9bba5; background: linear-gradient(145deg, #e6efe0, #f7f6e9); }
+    .media-frame img { display: none; width: 100%; height: 100%; object-fit: cover; }
+    .media-frame.has-image img { display: block; }
+    .media-frame.has-image .placeholder-inner { display: none; }
+    .placeholder-inner { text-align: center; padding: 15px; color: #58715c; }
+    .placeholder-inner svg { width: 30px; height: 30px; margin-bottom: 7px; opacity: .8; }
+    .placeholder-inner strong { display: block; font-size: .9rem; }
+    .placeholder-inner code { display: inline-block; margin-top: 5px; color: #758677; font-size: .7rem; overflow-wrap: anywhere; }
+    .visual-placeholder figcaption { margin-top: 9px; font-size: .83rem; font-weight: 720; color: var(--forest); }
+    .gallery-help { margin-top: 17px; font-size: .85rem; color: var(--muted); }
+    .gallery-help code { color: var(--forest); background: #eaf1e6; padding: 2px 6px; border-radius: 5px; }
+
+    /* Design */
+    #ontwerp { background: #eef2e9; }
+    .design-intro-grid { display: grid; grid-template-columns: 1fr .72fr; gap: 35px; align-items: end; margin-bottom: 34px; }
+    .dimensions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .dimension { background: var(--paper); border: 1px solid #e0e8dc; border-radius: 16px; padding: 17px 18px; }
+    .dimension strong { display: block; color: var(--forest); font-size: 1.7rem; letter-spacing: -.05em; }
+    .dimension span { color: var(--muted); font-size: .78rem; }
+    .access-note { display: flex; gap: 14px; align-items: flex-start; background: #e0ecd9; border: 1px solid #d3e2cb; border-radius: 17px; padding: 18px 20px; margin: 22px 0 32px; }
+    .access-note svg { flex: 0 0 24px; color: var(--forest); }
+    .access-note p { color: #4e6653; margin: 0; font-size: .92rem; }
+    .floor-layout { display: grid; grid-template-columns: .78fr 1.22fr; gap: 20px; }
+    .floor-selector { display: flex; flex-direction: column; gap: 9px; }
+    .floor-tab { display: flex; align-items: center; gap: 14px; width: 100%; border: 1px solid #dfe7dc; background: rgba(255,255,255,.65); text-align: left; border-radius: 16px; padding: 16px; color: var(--ink); transition: .2s ease; }
+    .floor-tab:hover { border-color: #9bb996; transform: translateX(2px); }
+    .floor-tab[aria-selected="true"] { background: var(--forest); color: white; border-color: var(--forest); box-shadow: 0 10px 22px rgba(24,61,50,.18); }
+    .floor-number { display: grid; place-items: center; flex: 0 0 41px; height: 41px; border-radius: 13px; background: var(--mint); color: var(--forest); font-weight: 850; }
+    .floor-tab[aria-selected="true"] .floor-number { background: rgba(255,255,255,.16); color: white; }
+    .floor-tab strong { display: block; font-size: .96rem; }
+    .floor-tab small { display: block; opacity: .7; font-size: .77rem; margin-top: 2px; }
+    .floor-panel { padding: 28px; min-height: 315px; display: grid; grid-template-columns: 1fr .75fr; gap: 20px; align-items: center; }
+    .floor-panel h3 { font-size: 1.55rem; }
+    .floor-panel p { color: var(--muted); }
+    .floor-panel ul { padding-left: 20px; margin-bottom: 0; color: var(--muted); }
+    .floor-panel li + li { margin-top: 6px; }
+    .floor-illustration { min-height: 215px; background: linear-gradient(150deg, #edf4e8, #dbe9d3); border-radius: 16px; display: grid; place-items: center; padding: 12px; }
+    .floor-illustration svg { width: 100%; max-width: 220px; max-height: 200px; }
+    .floor-panel[hidden] { display: none; }
+
+    /* Materials */
+    .materials-section { background: var(--paper); }
+    .materials-layout { display: grid; grid-template-columns: 1fr .9fr; gap: 26px; align-items: start; }
+    .material-chart-card { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .material-chart-card h3 { margin-bottom: 6px; }
+    .muted-copy { color: var(--muted); font-size: .9rem; }
+    .stacked-bar { display: flex; overflow: hidden; height: 25px; border-radius: 999px; background: #e5e9df; margin: 23px 0 20px; }
+    .bar-segment { min-width: 0; border: 0; padding: 0; opacity: .88; transition: opacity .2s ease, transform .2s ease; }
+    .bar-segment:hover, .bar-segment:focus-visible, .bar-segment.is-active { opacity: 1; outline: 2px solid var(--forest); outline-offset: 2px; z-index: 1; }
+    .bar-segment.is-active { transform: scaleY(1.17); }
+    .material-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+    .material-option { display: flex; align-items: center; gap: 10px; text-align: left; padding: 11px 12px; background: transparent; border: 1px solid transparent; border-radius: 12px; color: var(--ink); transition: .2s ease; }
+    .material-option:hover, .material-option[aria-pressed="true"] { background: white; border-color: #dce5d7; box-shadow: 0 5px 13px rgba(31,62,46,.06); }
+    .material-dot { width: 12px; height: 12px; flex: 0 0 12px; border-radius: 4px; }
+    .material-option strong { display: block; font-size: .84rem; line-height: 1.2; }
+    .material-option small { display: block; color: var(--muted); font-size: .76rem; }
+    .material-detail { padding: 30px; min-height: 345px; position: relative; overflow: hidden; }
+    .material-detail::after { content: ""; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: #edf3e9; right: -80px; top: -80px; }
+    .detail-top { position: relative; z-index: 1; display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
+    .detail-swatch { width: 48px; height: 48px; border-radius: 15px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+    .detail-percent { color: var(--leaf); font-size: .8rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .material-detail h3 { font-size: 1.55rem; margin: 2px 0 0; }
+    .material-detail p { position: relative; z-index: 1; color: var(--muted); }
+    .benefit-label { display: inline-flex; padding: 7px 11px; border-radius: 999px; color: #426448; background: #e8f1e3; font-size: .78rem; font-weight: 750; }
+    .material-detail .use-line { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink); font-size: .88rem; }
+    .total-note { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .8rem; }
+    .total-note strong { color: var(--forest); font-size: 1rem; }
+
+    /* Team */
+    #team { background: #eff3ea; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .team-card { padding: 23px; text-align: center; box-shadow: none; }
+    .avatar { width: 68px; height: 68px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 23px; background: linear-gradient(145deg, #d9e9d0, #a9c59f); color: var(--forest); font-weight: 900; font-size: 1.25rem; }
+    .team-card h3 { margin: 0; font-size: 1.05rem; }
+    .team-card p { color: var(--muted); margin: 5px 0 0; font-size: .8rem; }
+    .closing-panel { margin-top: 33px; background: var(--forest); color: white; border-radius: var(--radius); padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .closing-panel h3 { margin-bottom: 5px; font-size: 1.35rem; }
+    .closing-panel p { margin: 0; color: rgba(255,255,255,.7); font-size: .9rem; }
+    .closing-leaves { color: #c6dfb8; font-size: 2rem; letter-spacing: .15em; }
+    footer { background: #143329; color: rgba(255,255,255,.65); padding: 24px 0; font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .footer-inner strong { color: white; }
+    .back-top { color: #d2e5c8; text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr .8fr; gap: 15px; }
+      .tower-art { min-height: 320px; }
+      .concept-card.wide { grid-template-columns: 1fr; }
+      .image-gallery { grid-template-columns: repeat(2, 1fr); }
+      .floor-panel { grid-template-columns: 1fr .62fr; }
+      .materials-layout { grid-template-columns: 1fr; }
+      .material-detail { min-height: 260px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, var(--max)); }
+      .nav-wrap { min-height: 68px; }
+      .nav-toggle { display: inline-flex; align-items: center; gap: 7px; }
+      .nav-links { display: none; position: absolute; top: 67px; left: 15px; right: 15px; padding: 10px; flex-direction: column; align-items: stretch; background: var(--paper); border: 1px solid var(--line); border-radius: 17px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 14px; }
+      .hero { padding: 58px 0 48px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2.8rem, 13vw, 4.4rem); }
+      .tower-art { min-height: 275px; margin-top: 4px; }
+      .tower-svg { max-height: 285px; width: min(82%, 340px); }
+      .tower-art::before { width: 240px; height: 240px; }
+      .hero-tag { right: 0; bottom: 3px; font-size: .72rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { padding: 15px 7px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      main section { padding: 68px 0; }
+      .section-heading { margin-bottom: 28px; }
+      .concept-grid { grid-template-columns: 1fr; }
+      .concept-card.wide { grid-column: auto; }
+      .concept-card { padding: 23px; }
+      .image-gallery { gap: 12px; }
+      .design-intro-grid { grid-template-columns: 1fr; gap: 20px; }
+      .floor-layout { grid-template-columns: 1fr; }
+      .floor-selector { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .floor-tab { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 10px; }
+      .floor-tab small { font-size: .68rem; }
+      .floor-number { flex-basis: 35px; width: 35px; height: 35px; }
+      .floor-panel { grid-template-columns: 1fr; padding: 22px; }
+      .floor-illustration { min-height: 170px; }
+      .material-options { grid-template-columns: 1fr 1fr; }
+      .material-chart-card, .material-detail { padding: 21px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .closing-panel { padding: 24px; }
+      .closing-leaves { display: none; }
+    }
+    @media (max-width: 390px) {
+      .image-gallery { grid-template-columns: 1fr 1fr; }
+      .material-options { grid-template-columns: 1fr; }
+      .dimension { padding: 14px; }
+      .dimension strong { font-size: 1.45rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Uitkijktoren Steck, naar boven">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 20V10m0 4C7 14 5 11 5 7c4 0 7 2 7 7Zm0-3c0-4 2-6 6-7 0 4-2 7-6 7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>Steck <span style="font-weight:500; opacity:.62">/ O&amp;O</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Menu
+      </button>
+      <nav class="nav-links" id="mainNav" aria-label="Hoofdnavigatie">
+        <a href="#locatie">Locatie &amp; Concept</a>
+        <a href="#ontwerp">Ontwerp &amp; Indeling</a>
+        <a href="#materialen">Materialen</a>
+        <a href="#team">Team</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Een groen uitzicht op Utrecht</span>
+          <h1 id="hero-title">Uitkijk<span>toren</span><br>Steck.</h1>
+          <p class="hero-subtitle">Een duurzame plek om omhoog te kijken, tot rust te komen en de natuur van dichtbij te beleven.</p>
+          <div class="hero-actions">
+            <a class="button-primary" href="#ontwerp">Ontdek het ontwerp <span aria-hidden="true">↗</span></a>
+            <a class="button-ghost" href="#materialen">Bekijk de materialen</a>
+          </div>
+          <p class="hero-note">O&amp;O-project door Mikail, Tom, Bart en Yassir</p>
+        </div>
+        <div class="tower-art" aria-label="Illustratie van een groene uitkijktoren">
+          <svg class="tower-svg" viewBox="0 0 440 440" role="img" aria-labelledby="towerTitle towerDesc">
+            <title id="towerTitle">Schets van de uitkijktoren</title>
+            <desc id="towerDesc">Een houten toren met meerdere verdiepingen, een open trap en een groen dak.</desc>
+            <defs>
+              <linearGradient id="towerWood" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d9bc86"/><stop offset="1" stop-color="#a77f4e"/></linearGradient>
+              <linearGradient id="towerGlass" x1="0" x2="1"><stop stop-color="#e3f0d9" stop-opacity=".9"/><stop offset="1" stop-color="#9fc79a" stop-opacity=".55"/></linearGradient>
+            </defs>
+            <ellipse cx="222" cy="405" rx="144" ry="17" fill="#102c25" opacity=".24"/>
+            <path d="M135 115 175 84 305 84 344 115Z" fill="#47704c"/>
+            <path d="M143 115H337V142H143Z" fill="#d8e8ca"/>
+            <path d="M163 142H318L303 386H177Z" fill="url(#towerWood)" stroke="#f1dfbd" stroke-width="3"/>
+            <path d="M184 150V380M296 150V380" stroke="#765c3c" stroke-width="6" opacity=".7"/>
+            <path d="M175 210H306M172 278H310M178 345H305" stroke="#f0dfbd" stroke-width="9"/>
+            <path d="M185 150H294V207H185Z" fill="url(#towerGlass)" stroke="#f4f1dd" stroke-width="3"/>
+            <path d="M185 218H294V274H185Z" fill="#c7dfbc" stroke="#f4f1dd" stroke-width="3"/>
+            <path d="M185 286H294V342H185Z" fill="#dcebd3" stroke="#f4f1dd" stroke-width="3"/>
+            <path d="M192 157V200M222 157V200M252 157V200M282 157V200M192 226V267M222 226V267M252 226V267M282 226V267" stroke="#6c9469" stroke-width="3" opacity=".7"/>
+            <path d="M184 348H295V380H184Z" fill="#6b8d57"/>
+            <path d="M143 142 117 178 154 190 126 225 164 239 137 274 169 289" fill="none" stroke="#e7c995" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M119 178 154 190M126 225 164 239M137 274 169 289" stroke="#f2dfbd" stroke-width="3"/>
+            <path d="M155 386H325M173 397H309" stroke="#d4bc91" stroke-width="8" stroke-linecap="round"/>
+            <path d="M127 114c-20-24-12-44 8-47 8-23 38-20 43 1 25 7 27 32 7 46Z" fill="#7da66c"/>
+            <path d="M282 112c-2-28 17-42 37-31 21-11 42 6 34 27 16 17 4 37-18 37h-45c-18-5-23-19-8-33Z" fill="#8eb67a"/>
+            <path d="M96 385c-22-32-17-55 1-65 20 7 27 32 20 60 23-28 45-30 57-16-5 25-32 39-78 21Zm244-2c-15-27-9-50 9-60 19 12 22 36 12 59 22-22 43-21 52-4-11 22-35 31-73 5Z" fill="#6d9b62"/>
+            <g fill="#d0dfbc" opacity=".75"><circle cx="91" cy="110" r="4"/><circle cx="358" cy="172" r="4"/><circle cx="78" cy="300" r="3"/><circle cx="365" cy="314" r="3"/></g>
+          </svg>
+          <span class="hero-tag">Natuur • uitzicht • ontmoeting</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-strip" aria-label="Kerngegevens van het ontwerp">
+      <div class="container stats-grid">
+        <div class="stat"><span class="stat-icon" aria-hidden="true">↟</span><div><strong>22 meter</strong><span>Hoogte van de toren</span></div></div>
+        <div class="stat"><span class="stat-icon" aria-hidden="true">⌂</span><div><strong>8 meter</strong><span>Breedte van de toren</span></div></div>
+        <div class="stat"><span class="stat-icon" aria-hidden="true">♧</span><div><strong>100% verdeeld</strong><span>Materiaalkeuze in zes delen</span></div></div>
+      </div>
+    </div>
+
+    <section id="locatie" aria-labelledby="locatie-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">01 / Locatie &amp; concept</span>
+          <h2 id="locatie-title">Een uitzichtpunt midden in het groen.</h2>
+          <p class="section-intro">De toren voegt een nieuwe beleving toe aan het terrein van Steck: een plek waar bezoekers de omgeving vanuit een ander perspectief kunnen bekijken.</p>
+        </div>
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6M3 9h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>De plek bij Steck</h3>
+            <p>De uitkijktoren komt op het terrein links van het gebouw van Steck. Vanaf de top is er uitzicht op de stad, het platteland en natuurgebied Ruigenhoek. Bij helder weer is het idee dat bezoekers 15 kilometer of verder kunnen kijken.</p>
+            <ul>
+              <li>Een herkenbaar uitzichtpunt op het terrein.</li>
+              <li>De ruimte achter het gebouw blijft beschikbaar voor toekomstige plannen, zoals een boetiekhotel en een amfitheater.</li>
+            </ul>
+          </article>
+          <article class="concept-card">
+            <div class="card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v4m0 10v4M4.9 4.9l2.8 2.8m8.6 8.6 2.8 2.8M3 12h4m10 0h4M4.9 19.1l2.8-2.8m8.6-8.6 2.8-2.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/></svg></div>
+            <h3>Comfort in warme maanden</h3>
+            <p>De meeste bezoekers komen in de lente en zomer. Op warme dagen kan het in een gesloten toren snel heet worden. Daarom is het ontwerp gericht op schaduw en natuurlijke ventilatie.</p>
+            <ul>
+              <li>Een open constructie laat lucht door de toren stromen.</li>
+              <li>De buitentrap helpt de luchtcirculatie op gang.</li>
+              <li>Een overkapping geeft schaduw op het bovenste gedeelte.</li>
+            </ul>
+          </article>
+          <article class="concept-card wide">
+            <div class="green-wall-illustration" aria-label="Decoratieve illustratie van een groene gevel">
+              <svg viewBox="0 0 360 190" role="img" aria-label="Groene bladeren op een gevel">
+                <rect x="95" y="20" width="174" height="150" rx="12" fill="#f4f4e8" opacity=".9"/>
+                <path d="M111 34h142v122H111Z" fill="#d1dfc3"/>
+                <path d="M125 151c-12-28 7-42 24-29-6-28 13-44 31-25 3-32 28-34 35-6 22-17 39-1 28 20 18 7 17 30-1 40H125Z" fill="#5e8c59"/>
+                <path d="M145 145c-8-27 4-39 20-31 3-19 18-26 29-12 14-20 33-14 32 7 17 3 21 25 5 36Z" fill="#86aa72"/>
+                <path d="M154 148c18-27 33-45 56-61m-33 39 3-26m26 13 19-11m-65 49-20-18" stroke="#e0edcf" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <circle cx="72" cy="75" r="17" fill="#80a873"/><circle cx="292" cy="111" r="13" fill="#6e9b65"/><circle cx="55" cy="132" r="9" fill="#aac695"/>
+                <path d="M71 92v30m221-4v22M55 141v16" stroke="#668a58" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.7-7 10-7 10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 18c0-4 1-6 4-8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+              <h3>Een levende groene gevel</h3>
+              <p>Op de buitenmuren komen planten die met speciale, dier- en plantvriendelijke plantenlijm worden bevestigd. Het idee is geïnspireerd op terraria en dierentanks. Zo krijgt de toren een herkenbaar groen Steck-symbool dat de aandacht trekt van voorbijgangers en autorijders. De beplanting kan daarnaast bijdragen aan biodiversiteit en de lokale luchtkwaliteit.</p>
+              <span class="small-note">Bij de verdere uitwerking moet de lijm geschikt blijken voor de gekozen plantensoorten, ondergrond en weersomstandigheden.</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="image-gallery" aria-label="Plek voor afbeeldingen uit de presentatie">
+          <figure class="visual-placeholder">
+            <div class="media-frame" data-image="images/locatiekaart.jpg"><img alt="Kaart met de geplande locatie van de uitkijktoren bij Steck" loading="lazy"><div class="placeholder-inner"><svg viewBox="0 0 24 24" fill="none"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 3v15m6-12v15" stroke="currentColor" stroke-width="1.6"/></svg><strong>Locatiekaart</strong><code>images/locatiekaart.jpg</code></div></div>
+            <figcaption>Kaart / locatie bij Steck</figcaption>
+          </figure>
+          <figure class="visual-placeholder">
+            <div class="media-frame" data-image="images/buitentekening.jpg"><img alt="Buitentekening van de uitkijktoren" loading="lazy"><div class="placeholder-inner"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V5l8-3 8 3v15M4 10h16M8 20v-5h8v5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><strong>Buitentekening</strong><code>images/buitentekening.jpg</code></div></div>
+            <figcaption>Ontwerp van buitenaf</figcaption>
+          </figure>
+          <figure class="visual-placeholder">
+            <div class="media-frame" data-image="images/binnenaanzicht.jpg"><img alt="Binnenaanzicht van de uitkijktoren" loading="lazy"><div class="placeholder-inner"><svg viewBox="0 0 24 24" fill="none"><path d="M3 20V5h18v15M3 10h18M8 5v15m8-15v15" stroke="currentColor" stroke-width="1.6"/></svg><strong>Binnenaanzicht</strong><code>images/binnenaanzicht.jpg</code></div></div>
+            <figcaption>Indeling van binnen</figcaption>
+          </figure>
+          <figure class="visual-placeholder">
+            <div class="media-frame" data-image="images/groene-gevel-inspiratie.jpg"><img alt="Inspiratie voor de groene gevel met planten" loading="lazy"><div class="placeholder-inner"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4-3-6-7-5-11 4 0 6 2 7 5 0-5 3-8 8-9 0 7-3 13-10 15Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 21c0-5 2-9 7-13" stroke="currentColor" stroke-width="1.6"/></svg><strong>Planten / groene gevel</strong><code>images/groene-gevel-inspiratie.jpg</code></div></div>
+            <figcaption>Inspiratie voor de plantenwand</figcaption>
+          </figure>
+        </div>
+        <p class="gallery-help">Afbeeldingen toevoegen: maak naast <code>index.html</code> een map <code>images/</code> en plaats de bestanden daarin met exact de bestandsnamen die bij de placeholders staan. De placeholders veranderen vanzelf in afbeeldingen zodra de bestanden gevonden worden.</p>
+      </div>
+    </section>
+
+    <section id="ontwerp" aria-labelledby="ontwerp-title">
+      <div class="container">
+        <div class="section-heading design-intro-grid">
+          <div>
+            <span class="eyebrow">02 / Ontwerp &amp; indeling</span>
+            <h2 id="ontwerp-title">Van de begane grond tot aan de horizon.</h2>
+            <p class="section-intro">Een open toren met meerdere functies. Kies hieronder een verdieping om te ontdekken wat bezoekers daar kunnen doen.</p>
+          </div>
+          <div class="dimensions" aria-label="Belangrijkste afmetingen">
+            <div class="dimension"><strong>22 m</strong><span>Totale hoogte</span></div>
+            <div class="dimension"><strong>8 m</strong><span>Breedte toren</span></div>
+            <div class="dimension"><strong>4 m</strong><span>Hoogte tophut</span></div>
+            <div class="dimension"><strong>12 m</strong><span>Platformbreedte in schetsen</span></div>
+          </div>
+        </div>
+        <div class="access-note">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><circle cx="12" cy="5" r="2" stroke="currentColor" stroke-width="1.7"/><path d="M10 21v-6l-3-3 2-4 5 2 2 4h3M11 11l-3 4-3 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p><strong>Toegankelijkheid staat centraal.</strong> De buitentrap krijgt een railing voor veilig gebruik. Binnen komt een lift met een zitplek of stoel om onderweg te rusten. Deze is bedoeld voor onder andere rolstoelgebruikers, oudere bezoekers en mensen met zwakke knieën. De precieze lift- en veiligheidsmaten moeten in een volgende ontwerpfase technisch worden uitgewerkt.</p>
+        </div>
+
+        <div class="floor-layout">
+          <div class="floor-selector" role="tablist" aria-label="Kies een verdieping">
+            <button class="floor-tab" id="tab-ground" role="tab" aria-selected="true" aria-controls="panel-ground" tabindex="0" data-floor="ground">
+              <span class="floor-number">01</span><span><strong>Begane grond</strong><small>Spel &amp; entree</small></span>
+            </button>
+            <button class="floor-tab" id="tab-middle" role="tab" aria-selected="false" aria-controls="panel-middle" tabindex="-1" data-floor="middle">
+              <span class="floor-number">02</span><span><strong>Midden</strong><small>Planten &amp; winkel</small></span>
+            </button>
+            <button class="floor-tab" id="tab-top" role="tab" aria-selected="false" aria-controls="panel-top" tabindex="-1" data-floor="top">
+              <span class="floor-number">03</span><span><strong>De top</strong><small>Uitzicht &amp; aquarium</small></span>
+            </button>
+          </div>
+
+          <article class="floor-panel" id="panel-ground" role="tabpanel" aria-labelledby="tab-ground">
+            <div>
+              <span class="eyebrow">Onder / entree</span>
+              <h3>Welkom in de toren</h3>
+              <p>De begane grond is een uitnodigende startplek. Kinderen kunnen hier interactieve spelletjes doen voordat ze de toren verder ontdekken.</p>
+              <ul><li>Interactieve spelletjes voor kinderen.</li><li>Toegang tot de buitentrap en de toren.</li><li>Entree naar de lift.</li></ul>
+            </div>
+            <div class="floor-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 190" fill="none"><path d="M35 158h150M55 158V43h110v115" stroke="#52734e" stroke-width="5" stroke-linecap="round"/><path d="M55 85h110M55 125h110" stroke="#88a97a" stroke-width="5"/><rect x="76" y="100" width="27" height="29" rx="5" fill="#e8bd71"/><rect x="116" y="100" width="28" height="29" rx="5" fill="#8bb1a1"/><circle cx="90" cy="90" r="7" fill="#547a52"/><circle cx="130" cy="90" r="7" fill="#547a52"/><path d="M76 145h69" stroke="#b28756" stroke-width="5" stroke-linecap="round"/><path d="M172 50c8 10 9 20 0 28m8-36c13 15 14 30 0 44" stroke="#7fa56e" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+
+          <article class="floor-panel" id="panel-middle" role="tabpanel" aria-labelledby="tab-middle" hidden>
+            <div>
+              <span class="eyebrow">Lagere / middelste verdiepingen</span>
+              <h3>Een groene tussenstop</h3>
+              <p>Op de tussenverdiepingen draait het om ontdekken en even rondkijken. Planten brengen de natuur naar binnen en er is plek voor kleine voorzieningen.</p>
+              <ul><li>Groene zones met verschillende planten.</li><li>Een kassa en ruimte voor souvenirs.</li><li>Een plek om even te pauzeren tijdens de route.</li></ul>
+            </div>
+            <div class="floor-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 190" fill="none"><path d="M32 159h156M48 159V46h124v113" stroke="#52734e" stroke-width="5"/><path d="M48 88h124M48 128h124" stroke="#88a97a" stroke-width="5"/><path d="M83 88c-15-22-4-38 12-32 2-19 19-25 28-8 15-8 29 5 21 20 8 14-2 23-16 20Z" fill="#7caa70"/><path d="M111 83V55m0 18-14-12m14 22 16-15" stroke="#eff5df" stroke-width="3" stroke-linecap="round"/><rect x="70" y="132" width="83" height="18" rx="4" fill="#d6b77f"/><path d="M81 132v-20h60v20" stroke="#9a774d" stroke-width="3"/><circle cx="93" cy="106" r="5" fill="#e1bd77"/></svg>
+            </div>
+          </article>
+
+          <article class="floor-panel" id="panel-top" role="tabpanel" aria-labelledby="tab-top" hidden>
+            <div>
+              <span class="eyebrow">Boven / top</span>
+              <h3>Uitzicht en verwondering</h3>
+              <p>Boven aangekomen kunnen bezoekers rustig zitten en uitkijken over de omgeving. De hut vormt een bijzondere plek met een aquarium als blikvanger.</p>
+              <ul><li>Terras met bankjes, ook voor oudere bezoekers.</li><li>Een telescoop of verrekijker om ver te kijken.</li><li>Een hut van 4 meter hoog met een ruim aquarium met verschillende vissoorten.</li></ul>
+            </div>
+            <div class="floor-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 190" fill="none"><path d="M30 151h160M48 150V66h124v84" stroke="#52734e" stroke-width="5"/><path d="M38 65 110 25l72 40" stroke="#b28b58" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect x="72" y="85" width="76" height="43" rx="7" fill="#a8c9bd" stroke="#5f897b" stroke-width="3"/><path d="M79 111c10-13 17 8 28-3 12-12 20 9 34-3" stroke="#eaf7ee" stroke-width="3" stroke-linecap="round"/><path d="M91 101c4-8 13-8 17 0-4 8-13 8-17 0Zm23 8c4-8 13-8 17 0-4 8-13 8-17 0Z" fill="#e8bd71"/><path d="M52 143h44m29 0h44" stroke="#a77d4b" stroke-width="5" stroke-linecap="round"/><path d="M110 20V8m-7 7h14" stroke="#e3bb72" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="materials-section" id="materialen" aria-labelledby="materialen-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">03 / Duurzame materialen</span>
+          <h2 id="materialen-title">Gebouwd met oog voor morgen.</h2>
+          <p class="section-intro">De materiaalmix combineert hernieuwbare grondstoffen met hergebruikte en energiezuinige materialen. Klik op een onderdeel van de verdeling voor meer uitleg.</p>
+        </div>
+        <div class="materials-layout">
+          <div class="material-chart-card">
+            <h3>Materiaalverdeling</h3>
+            <p class="muted-copy">Aandeel van ieder materiaal in het ontwerp</p>
+            <div class="stacked-bar" role="group" aria-label="Interactieve balk met de materiaalverdeling">
+              <button class="bar-segment is-active" data-material="wood" style="width:40%; background:#638c5a" aria-label="FSC-hout 40%" title="FSC-hout 40%"></button>
+              <button class="bar-segment" data-material="bamboo" style="width:25%; background:#d4b36d" aria-label="Constructief bamboe 25%" title="Constructief bamboe 25%"></button>
+              <button class="bar-segment" data-material="brick" style="width:15%; background:#b9775c" aria-label="Hergebruikte bakstenen 15%" title="Hergebruikte bakstenen 15%"></button>
+              <button class="bar-segment" data-material="insulation" style="width:10%; background:#9ab8aa" aria-label="Biobased isolatie 10%" title="Biobased isolatie 10%"></button>
+              <button class="bar-segment" data-material="steel" style="width:5%; background:#647b83" aria-label="Gerecycled staal 5%" title="Gerecycled staal 5%"></button>
+              <button class="bar-segment" data-material="glass" style="width:5%; background:#8bbbc5" aria-label="HR+++ glas 5%" title="HR+++ glas 5%"></button>
+            </div>
+            <div class="material-options" aria-label="Selecteer een materiaal">
+              <button class="material-option" data-material="wood" aria-pressed="true"><span class="material-dot" style="background:#638c5a"></span><span><strong>FSC-hout</strong><small>40% van de mix</small></span></button>
+              <button class="material-option" data-material="bamboo" aria-pressed="false"><span class="material-dot" style="background:#d4b36d"></span><span><strong>Constructief bamboe</strong><small>25% van de mix</small></span></button>
+              <button class="material-option" data-material="brick" aria-pressed="false"><span class="material-dot" style="background:#b9775c"></span><span><strong>Hergebruikte bakstenen</strong><small>15% van de mix</small></span></button>
+              <button class="material-option" data-material="insulation" aria-pressed="false"><span class="material-dot" style="background:#9ab8aa"></span><span><strong>Biobased isolatie</strong><small>10% van de mix</small></span></button>
+              <button class="material-option" data-material="steel" aria-pressed="false"><span class="material-dot" style="background:#647b83"></span><span><strong>Gerecycled staal</strong><small>5% van de mix</small></span></button>
+              <button class="material-option" data-material="glass" aria-pressed="false"><span class="material-dot" style="background:#8bbbc5"></span><span><strong>HR+++ glas</strong><small>5% van de mix</small></span></button>
+            </div>
+            <div class="total-note"><span>Totale materiaalverdeling</span><strong>100%</strong></div>
+          </div>
+
+          <article class="material-detail" id="materialDetail" aria-live="polite" aria-atomic="true">
+            <div class="detail-top">
+              <div class="detail-swatch" id="detailSwatch" style="background:#638c5a"></div>
+              <div><div class="detail-percent" id="detailPercent">40% van het totaal</div><h3 id="detailTitle">FSC-hout</h3></div>
+            </div>
+            <p id="detailDescription">Duurzaam hout uit verantwoord beheerde bossen. Het is een hernieuwbare grondstof en past bij de natuurlijke uitstraling van de uitkijktoren.</p>
+            <span class="benefit-label" id="detailBenefit">Verantwoord bosbeheer</span>
+            <p class="use-line" id="detailUse"><strong>Toepassing:</strong> vloeren, trappen en een deel van de muren.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">04 / Team</span>
+          <h2 id="team-title">Vier makers, één groen idee.</h2>
+          <p class="section-intro">Dit ontwerp is gemaakt als O&amp;O-project. Samen werken we aan een uitkijktoren die past bij de plek, de bezoekers en de natuur.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card"><div class="avatar" aria-hidden="true">M</div><h3>Mikail</h3><p>Projectteam</p></article>
+          <article class="team-card"><div class="avatar" aria-hidden="true">T</div><h3>Tom</h3><p>Projectteam</p></article>
+          <article class="team-card"><div class="avatar" aria-hidden="true">B</div><h3>Bart</h3><p>Projectteam</p></article>
+          <article class="team-card"><div class="avatar" aria-hidden="true">Y</div><h3>Yassir</h3><p>Projectteam</p></article>
+        </div>
+        <div class="closing-panel">
+          <div><h3>Een plek om hogerop te komen.</h3><p>Een ontwerp waarin uitzicht, toegankelijkheid en groen samenkomen.</p></div>
+          <div class="closing-leaves" aria-hidden="true">✳ ❋ ✳</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span><strong>Uitkijktoren Steck</strong> · O&amp;O-project</span>
+      <span>Ontworpen door Mikail, Tom, Bart en Yassir</span>
+      <a class="back-top" href="#home">Terug naar boven ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      // Mobiele navigatie
+      const navToggle = document.getElementById('navToggle');
+      const mainNav = document.getElementById('mainNav');
+      navToggle.addEventListener('click', () => {
+        const isOpen = mainNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      mainNav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mainNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Verdiepingen-viewer met toetsenbordbediening
+      const floorTabs = Array.from(document.querySelectorAll('.floor-tab'));
+      const floorPanels = Array.from(document.querySelectorAll('.floor-panel'));
+      function selectFloor(tab, moveFocus = false) {
+        floorTabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        floorPanels.forEach((panel) => {
+          panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+        });
+        if (moveFocus) tab.focus();
+      }
+      floorTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectFloor(tab));
+        tab.addEventListener('keydown', (event) => {
+          let nextIndex = index;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % floorTabs.length;
+          else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + floorTabs.length) % floorTabs.length;
+          else if (event.key === 'Home') nextIndex = 0;
+          else if (event.key === 'End') nextIndex = floorTabs.length - 1;
+          else return;
+          event.preventDefault();
+          selectFloor(floorTabs[nextIndex], true);
+        });
+      });
+
+      // Materiaalgegevens: de opgegeven verdeling telt op tot precies 100%.
+      const materials = {
+        wood: {
+          title: 'FSC-hout', percent: '40%', color: '#638c5a',
+          description: 'Duurzaam hout uit verantwoord beheerde bossen. Het is een hernieuwbare grondstof en past bij de natuurlijke uitstraling van de uitkijktoren.',
+          benefit: 'Verantwoord bosbeheer',
+          use: 'vloeren, trappen en een deel van de muren.'
+        },
+        bamboo: {
+          title: 'Constructief bamboe', percent: '25%', color: '#d4b36d',
+          description: 'Bamboe groeit razendsnel en slaat CO₂ op. Daardoor is het een milieuvriendelijke, snel vernieuwbare grondstof voor het ontwerp.',
+          benefit: 'Snelle hergroei & CO₂-opslag',
+          use: 'constructieve onderdelen waar bamboe technisch geschikt is.'
+        },
+        brick: {
+          title: 'Hergebruikte bakstenen', percent: '15%', color: '#b9775c',
+          description: 'Door oude bakstenen opnieuw te gebruiken, krijgen bestaande materialen een tweede leven. Dat vermindert afval en maakt het ontwerp circulair.',
+          benefit: 'Hergebruik & minder afval',
+          use: 'delen van de wanden en afwerking.'
+        },
+        insulation: {
+          title: 'Biobased isolatie', percent: '10%', color: '#9ab8aa',
+          description: 'Natuurlijk, milieuvriendelijk en afbreekbaar isolatiemateriaal. Het helpt warmteverlies in de winter te beperken.',
+          benefit: 'Natuurlijke isolatie',
+          use: 'geïsoleerde delen van de gebouwschil.'
+        },
+        steel: {
+          title: 'Gerecycled staal', percent: '5%', color: '#647b83',
+          description: 'Staal is zeer sterk en kan steeds opnieuw worden hergebruikt. Door gerecycled staal toe te passen, krijgt het materiaal een nieuwe functie.',
+          benefit: 'Sterk & herbruikbaar',
+          use: 'verbindingen en onderdelen waar extra sterkte nodig is.'
+        },
+        glass: {
+          title: 'HR+++ glas', percent: '5%', color: '#8bbbc5',
+          description: 'Hoogwaardig isolatieglas dat warmte binnenhoudt en zo helpt energie te besparen.',
+          benefit: 'Minder warmteverlies',
+          use: 'ramen en transparante delen van de hut.'
+        }
+      };
+      const detailTitle = document.getElementById('detailTitle');
+      const detailPercent = document.getElementById('detailPercent');
+      const detailDescription = document.getElementById('detailDescription');
+      const detailBenefit = document.getElementById('detailBenefit');
+      const detailUse = document.getElementById('detailUse');
+      const detailSwatch = document.getElementById('detailSwatch');
+      const materialControls = document.querySelectorAll('[data-material]');
+
+      function selectMaterial(key) {
+        const item = materials[key];
+        if (!item) return;
+        detailTitle.textContent = item.title;
+        detailPercent.textContent = item.percent + ' van het totaal';
+        detailDescription.textContent = item.description;
+        detailBenefit.textContent = item.benefit;
+        detailSwatch.style.background = item.color;
+        detailUse.innerHTML = '<strong>Toepassing:</strong> ' + item.use;
+        materialControls.forEach((control) => {
+          const active = control.dataset.material === key;
+          if (control.classList.contains('bar-segment')) control.classList.toggle('is-active', active);
+          else control.setAttribute('aria-pressed', String(active));
+        });
+      }
+      materialControls.forEach((control) => {
+        control.addEventListener('click', () => selectMaterial(control.dataset.material));
+      });
+
+      // Afbeeldingen worden geladen wanneer de bijbehorende bestanden in /images staan.
+      document.querySelectorAll('.media-frame[data-image]').forEach((frame) => {
+        const path = frame.dataset.image;
+        const img = frame.querySelector('img');
+        img.addEventListener('load', () => frame.classList.add('has-image'));
+        img.addEventListener('error', () => frame.classList.remove('has-image'));
+        img.src = path;
+      });
+    })();
+  </script>
+</body>
+</html>
